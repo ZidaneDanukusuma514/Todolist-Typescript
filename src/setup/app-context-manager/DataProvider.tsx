@@ -10,7 +10,7 @@ interface DataProp {
 }
 export interface IDataContextProps {
   Data?: DataProp[];
-  HandleAdd?: (item: DataProp) => void;
+  HandleAdd: (item: DataProp) => void;
   HandleDelete: (item: DataProp) => void;
 }
 export const DataContext = React.createContext<IDataContextProps | null>(null);

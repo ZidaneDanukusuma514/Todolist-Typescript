@@ -8,6 +8,7 @@ export interface ITodoFormProps {}
 
 export default function TodoForm(props: ITodoFormProps) {
   const [Text, setText] = React.useState("");
+  const checkRef = React.useRef<HTMLInputElement>(null);
   const [Priority, setPriority] = React.useState(0);
   const { HandleAdd } = React.useContext(DataContext) as IDataContextProps;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +17,7 @@ export default function TodoForm(props: ITodoFormProps) {
       text: Text,
       priority: Priority,
     };
+
     HandleAdd(ood);
     setText("");
     setPriority(0);
@@ -24,6 +26,7 @@ export default function TodoForm(props: ITodoFormProps) {
     <form onSubmit={handleSubmit} className="flex space-x-2 bg-white p-4">
       <input
         className="grow border-r-2"
+        ref={checkRef}
         onChange={(e) => {
           setText(e.target.value);
         }}
@@ -42,6 +45,7 @@ export default function TodoForm(props: ITodoFormProps) {
       <button
         type="submit"
         className="text-white bg-sky-800 hover:bg-sky-700 p-2 rounded-lg"
+        onClick={() => console.log(checkRef.current?.value)}
       >
         Submit
       </button>
