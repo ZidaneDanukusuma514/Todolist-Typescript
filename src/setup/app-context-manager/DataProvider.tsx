@@ -1,21 +1,19 @@
 import * as React from "react";
+import { ContextProps, DataProp } from "./Interface";
 
-export interface IDataProviderProps {
+interface IDataProviderProps {
   children: React.ReactNode;
 }
 
-interface DataProp {
-  text: string;
-  priority: number;
-}
-export interface IDataContextProps {
-  Data?: DataProp[];
-  HandleAdd: (item: DataProp) => void;
-  HandleDelete: (item: DataProp) => void;
-}
-export const DataContext = React.createContext<IDataContextProps | null>(null);
+export const DataContext = React.createContext<ContextProps | null>(null);
+
 export default function DataProvider({ children }: IDataProviderProps) {
-  const [Data, setData] = React.useState<DataProp[]>([]);
+  const [Data, setData] = React.useState<DataProp[]>([
+    {
+      text: "Write a structual program",
+      priority: 10,
+    },
+  ]);
   const HandleAdd = (item: DataProp) => {
     setData([...Data, item]);
   };

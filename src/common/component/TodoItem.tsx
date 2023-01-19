@@ -1,8 +1,6 @@
 import * as React from "react";
-import {
-  DataContext,
-  IDataContextProps,
-} from "../../setup/app-context-manager/DataProvider";
+import { DataContext } from "../../setup/app-context-manager/DataProvider";
+import { ContextProps } from "../../setup/app-context-manager/Interface";
 
 export interface ITodoItemProps {
   text: string;
@@ -10,7 +8,7 @@ export interface ITodoItemProps {
 }
 
 export default function TodoItem({ text, priority }: ITodoItemProps) {
-  const { HandleDelete } = React.useContext(DataContext) as IDataContextProps;
+  const { HandleDelete } = React.useContext(DataContext) as ContextProps;
 
   const Delete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
