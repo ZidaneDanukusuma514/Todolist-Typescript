@@ -8,6 +8,7 @@ export interface ITodoListProps {}
 
 export default function TodoList(props: ITodoListProps) {
   const { Data } = React.useContext(DataContext) as ContextProps;
+  console.log("List Rendered");
 
   return (
     <div className="flex flex-col space-y-2 my-4">

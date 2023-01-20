@@ -8,7 +8,9 @@ export interface ITodoItemProps {
 }
 
 export default function TodoItem({ text, priority }: ITodoItemProps) {
-  const { HandleDelete } = React.useContext(DataContext) as ContextProps;
+  const { HandleDelete, HandleEdit } = React.useContext(
+    DataContext
+  ) as ContextProps;
 
   const Delete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -28,6 +30,14 @@ export default function TodoItem({ text, priority }: ITodoItemProps) {
         className="p-2 text-white bg-rose-600 hover:bg-rose-500 font-bold mx-2"
       >
         Del
+      </button>
+      <button
+        onClick={() => {
+          HandleEdit();
+        }}
+        className="p-2 text-white bg-purple-600 hover:bg-purple-500 font-bold "
+      >
+        Edit
       </button>
     </div>
   );

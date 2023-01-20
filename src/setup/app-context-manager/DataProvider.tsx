@@ -8,6 +8,7 @@ interface IDataProviderProps {
 export const DataContext = React.createContext<ContextProps | null>(null);
 
 export default function DataProvider({ children }: IDataProviderProps) {
+  const [Mode, setMode] = React.useState<"edit" | "writing">("writing");
   const [Data, setData] = React.useState<DataProp[]>([
     {
       text: "Write a structual program",
@@ -26,8 +27,13 @@ export default function DataProvider({ children }: IDataProviderProps) {
     });
     setData(result);
   };
+  const HandleEdit = () => {
+    setMode("edit");
+  };
   return (
-    <DataContext.Provider value={{ Data, HandleAdd, HandleDelete }}>
+    <DataContext.Provider
+      value={{ Data, Mode, HandleAdd, HandleDelete, HandleEdit }}
+    >
       {children}
     </DataContext.Provider>
   );

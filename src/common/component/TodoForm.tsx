@@ -9,7 +9,7 @@ export default function TodoForm(props: ITodoFormProps) {
   const TextRef = React.useRef<HTMLInputElement>(null);
   const PriorityRef = React.useRef<HTMLInputElement>(null);
   const [Priority, setPriority] = React.useState(0);
-  const { HandleAdd } = React.useContext(DataContext) as ContextProps;
+  const { HandleAdd, Mode } = React.useContext(DataContext) as ContextProps;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let ood = {
@@ -17,7 +17,14 @@ export default function TodoForm(props: ITodoFormProps) {
       priority: Priority,
     };
 
-    HandleAdd(ood);
+    if (Mode === "writing") {
+      HandleAdd(ood);
+    } else if (Mode === "edit") {
+      console.log("edit");
+    } else {
+      console.log("Error Submit Form");
+    }
+
     setText("");
     setPriority(0);
   };
@@ -39,7 +46,7 @@ export default function TodoForm(props: ITodoFormProps) {
             setPriority(Number(PriorityRef.current?.value));
         }}
       >
-        Submit
+        {Mode}
       </button>
     </form>
   );
