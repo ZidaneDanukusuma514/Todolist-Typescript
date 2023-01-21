@@ -9,6 +9,7 @@ export const DataContext = React.createContext<ContextProps | null>(null);
 
 export default function DataProvider({ children }: IDataProviderProps) {
   const [Mode, setMode] = React.useState<"edit" | "writing">("writing");
+  const [Done, setDone] = React.useState<boolean>(false);
   const [Data, setData] = React.useState<DataProp[]>([
     {
       text: "Write a structual program",
@@ -30,9 +31,21 @@ export default function DataProvider({ children }: IDataProviderProps) {
   const HandleEdit = () => {
     setMode("edit");
   };
+  const HandleUpdate = (item: DataProp, updt: DataProp) => {};
+  const HandleDone = () => {
+    setDone(!Done);
+  };
   return (
     <DataContext.Provider
-      value={{ Data, Mode, HandleAdd, HandleDelete, HandleEdit }}
+      value={{
+        Data,
+        Mode,
+        Done,
+        HandleAdd,
+        HandleDone,
+        HandleDelete,
+        HandleEdit,
+      }}
     >
       {children}
     </DataContext.Provider>
