@@ -17,13 +17,7 @@ export default function TodoForm(props: ITodoFormProps) {
       priority: Priority,
     };
 
-    if (Mode === "writing") {
-      HandleAdd(ood);
-    } else if (Mode === "edit") {
-      console.log("edit");
-    } else {
-      console.log("Error Submit Form");
-    }
+    HandleAdd(ood);
 
     setText("");
     setPriority(0);

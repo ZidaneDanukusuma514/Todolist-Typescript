@@ -1,4 +1,5 @@
 export interface DataProp {
+  id?: string;
   text: string;
   priority: number;
 }
@@ -11,4 +12,8 @@ export interface ContextProps {
   HandleDelete: (item: DataProp) => void;
   HandleEdit: () => void;
   HandleDone: () => void;
+}
+
+export interface ZustandProps {
+  Data: DataProp[];
 }
